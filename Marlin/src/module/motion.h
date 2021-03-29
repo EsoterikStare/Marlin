@@ -65,7 +65,7 @@ extern xyz_pos_t cartes;
   #define XY_PROBE_FEEDRATE_MM_S PLANNER_XY_FEEDRATE()
 #endif
 
-constexpr feedRate_t z_probe_fast_mm_s = MMM_TO_MMS(Z_PROBE_SPEED_FAST);
+constexpr feedRate_t z_probe_fast_mm_s = MMM_TO_MMS(4 * 60);
 
 /**
  * Feed rates are often configured with mm/m

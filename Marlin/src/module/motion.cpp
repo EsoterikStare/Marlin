@@ -1153,7 +1153,7 @@ bool homing_needed_error(uint8_t axis_bits/*=0x07*/) {
  */
 feedRate_t get_homing_bump_feedrate(const AxisEnum axis) {
   #if HOMING_Z_WITH_PROBE
-    if (axis == Z_AXIS) return MMM_TO_MMS(Z_PROBE_SPEED_SLOW);
+    if (axis == Z_AXIS) return MMM_TO_MMS(60);
   #endif
   static const uint8_t homing_bump_divisor[] PROGMEM = HOMING_BUMP_DIVISOR;
   uint8_t hbd = pgm_read_byte(&homing_bump_divisor[axis]);
@@ -1640,7 +1640,7 @@ void homeaxis(const AxisEnum axis) {
   if (bump) {
     // Move away from the endstop by the axis HOMING_BUMP_MM
     if (DEBUGGING(LEVELING)) DEBUG_ECHOLNPAIR("Move Away: ", -bump, "mm");
-    do_homing_move(axis, -bump, TERN0(HOMING_Z_WITH_PROBE, axis == Z_AXIS) ? MMM_TO_MMS(Z_PROBE_SPEED_FAST) : 0, false);
+    do_homing_move(axis, -bump, TERN0(HOMING_Z_WITH_PROBE, axis == Z_AXIS) ? MMM_TO_MMS(4 * 60) : 0, false);
 
     #if ENABLED(DETECT_BROKEN_ENDSTOP)
       // Check for a broken endstop
